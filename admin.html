@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#800f2d" />
+    <meta
+      name="description"
+      content="Lucky Cherry — la máquina de sorteo de Lara's game night."
+    />
+    <title>Lucky Cherry · Lara's 21</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar lucky-topbar">
+        <a href="./" class="brand">🍒 Lucky Cherry</a>
+        <nav class="mini-nav">
+          <a href="./">Ver invitación</a
+          ><a href="./equipos.html">Vista equipos</a>
+        </nav>
+      </header>
+      <div class="top-intro lucky-hero">
+        <div class="lucky-kicker">✦ Lara’s 21 · game night ✦</div>
+        <h1>Lucky Cherry</h1>
+        <p>
+          Tu espacio para cargar las confirmadas, sortear equipos y compartirlos
+          antes de la fiesta.
+        </p>
+      </div>
+      <main class="content">
+        <div class="notice" style="margin-bottom: 20px">
+          <b>Solo funciona en este navegador.</b> Las confirmaciones llegan a tu
+          WhatsApp y tenés que cargarlas manualmente. Esta ruta no tiene
+          contraseña ni protección real: no la compartas y no incluyas
+          información sensible. Exportá una copia como respaldo.
+        </div>
+        <section class="paper lucky-paper">
+          <div class="section-eyebrow">01 · Las jugadoras</div>
+          <h2>
+            Confirmadas <span class="count-pill" id="guest-count">0</span>
+          </h2>
+          <p class="muted">
+            Agregá los nombres de quienes te confirmaron que participarán en los
+            juegos. Tocá × para quitarlas.
+          </p>
+          <form id="add-form" class="form-row">
+            <label class="form-field"
+              >Nombre<input
+                id="name"
+                maxlength="70"
+                minlength="2"
+                placeholder="Ej: Sofi"
+                required /></label
+            ><button class="button" type="submit">Agregar invitada +</button>
+          </form>
+          <div class="tags" id="guests"></div>
+          <p class="muted">Los nombres se guardan solo en este navegador.</p>
+        </section>
+        <section class="paper lucky-machine">
+          <div class="section-eyebrow">02 · La máquina de la suerte</div>
+          <h2>¿Quién juega con quién?</h2>
+          <p class="muted">
+            Se mezclan las invitadas al azar y se reparten en grupos con tamaños
+            equilibrados.
+          </p>
+          <label class="form-field"
+            >Cantidad de equipos<select id="count">
+              <option value="2">2 equipos</option>
+              <option value="3">3 equipos</option>
+              <option value="4" selected>4 equipos</option>
+              <option value="5">5 equipos</option>
+              <option value="6">6 equipos</option>
+            </select></label
+          >
+          <div id="team-name-fields" class="team-name-fields"></div>
+          <div class="slot-window" id="slot-window" aria-live="polite">
+            <span>🍒</span><b>¡Que empiece la suerte!</b><span>🎀</span>
+          </div>
+          <button class="button full draw-button" id="draw">
+            🍒 Sortear equipos 🍒
+          </button>
+          <p class="status" id="draw-status" aria-live="polite"></p>
+          <div id="teams"></div>
+          <button class="button full hidden" id="confirm-result">
+            ✨ Confirmar y publicar resultado
+          </button>
+          <div class="actions hidden" id="publish-actions">
+            <button class="button" id="copy-link">
+              🔗 Copiar enlace de equipos</button
+            ><button class="button outline" id="send-teams">
+              💌 Compartir por WhatsApp</button
+            ><a
+              id="view-teams"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="button soft"
+              >👀 Vista pública</a
+            >
+          </div>
+          <p id="publish-info" class="muted"></p>
+        </section>
+        <section class="paper lucky-paper">
+          <h2>Guardá tu organización 💾</h2>
+          <p class="muted">
+            Podés exportar toda la información en un archivo JSON y restaurarla
+            después desde otro dispositivo o navegador.
+          </p>
+          <div class="actions">
+            <button class="button" id="export">Descargar copia</button
+            ><button class="button outline" id="import">Importar copia</button
+            ><input
+              type="file"
+              accept="application/json,.json"
+              id="import-file"
+              class="hidden"
+            />
+          </div>
+          <p class="status" id="backup-status" aria-live="polite"></p>
+        </section>
+      </main>
+      <footer class="footer">🍒 GOOD LUCK, BABY · LARA’S 21 🍒</footer>
+    </div>
+    <script type="module" src="./admin.js"></script>
+  </body>
+</html>

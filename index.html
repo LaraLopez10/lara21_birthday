@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#800f2d" />
+    <meta
+      name="description"
+      content="Lara's 21st Birthday — Cherry Game Night. ¡Estás invitada!"
+    />
+    <title>Lara's 21st Birthday 🍒</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <div class="brand">🍒 Lara’s 21</div>
+        <nav class="mini-nav">
+          <a href="#juegos">Game Night</a
+          ><a href="./equipos.html">Ver equipos</a>
+        </nav>
+      </header>
+      <main>
+        <div class="checkers">
+          <div class="invite-card">
+            <span class="bow" aria-hidden="true">🎀</span>
+            <p class="subline">You're invited to</p>
+            <h1 class="scribble hero-name">Lara's</h1>
+            <p class="headline">21st Birthday</p>
+            <div class="decor" aria-hidden="true">🍒 ✦ 🍸 ✦ 🍒</div>
+            <div class="subline">GAME NIGHT EDITION</div>
+            <p class="intro">
+              Cumplo 21 y quiero festejarlo con vos: risas, brindis y una noche
+              de juegos por equipos. ¡Vení con ganas de pasarla bien!
+            </p>
+            <div class="event-stamp">
+              <strong>21 · NOVIEMBRE</strong><span>SÁBADO · 22:00 HS</span>
+            </div>
+            <div class="place">♡ Mi casa · San José 643 ♡</div>
+            <div class="dress">
+              <b>✦ Dress code ✦</b>
+              <p>Ropa para santas 😇</p>
+            </div>
+            <div class="actions">
+              <button class="button" id="rsvp">💌 Confirmar asistencia</button
+              ><a
+                class="button outline"
+                target="_blank"
+                rel="noopener"
+                href="https://www.google.com/maps/search/?api=1&amp;query=San%20Jos%C3%A9%20643%2C%20Villa%20del%20Rosario%2C%20C%C3%B3rdoba%2C%20Argentina"
+                >📍 Cómo llegar</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="content">
+          <section class="paper center">
+            <h2>La cuenta regresiva 🥂</h2>
+            <p class="muted">Cada vez falta menos para la noche del año.</p>
+            <div class="clock">
+              <div class="unit">
+                <strong id="days">--</strong><small>Días</small>
+              </div>
+              <div class="unit">
+                <strong id="hours">--</strong><small>Horas</small>
+              </div>
+              <div class="unit">
+                <strong id="minutes">--</strong><small>Minutos</small>
+              </div>
+              <div class="unit">
+                <strong id="seconds">--</strong><small>Segundos</small>
+              </div>
+            </div>
+            <p class="muted" id="count-caption"></p>
+          </section>
+          <section id="juegos" class="paper">
+            <h2>Que empiecen los juegos 🪩</h2>
+            <p>
+              Vamos a formar equipos al azar y pasar una noche llena de risas.
+              Los juegos son sorpresa y los equipos se revelarán antes de la
+              fiesta.
+            </p>
+          </section>
+          <section class="paper">
+            <h2>¿Cuál es tu team? 🎀</h2>
+            <p class="muted">
+              El sorteo ya está en marcha. Abrí la página para encontrar tu team
+              cuando Lara publique el resultado.
+            </p>
+            <div class="actions">
+              <a class="button" href="./equipos.html">🍒 Ver los equipos</a>
+            </div>
+          </section>
+        </div>
+      </main>
+      <footer class="footer">CHERRY VIBES ONLY ♥ · LARA’S 21</footer>
+    </div>
+    <div
+      class="modal hidden"
+      id="rsvp-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="rsvp-heading"
+    >
+      <div class="modal-panel">
+        <button class="modal-close" id="close" aria-label="Cerrar">×</button>
+        <div class="center" style="font-size: 42px">💌</div>
+        <h2 id="rsvp-heading" class="center">¿Venís a mis 21?</h2>
+        <p class="muted center">
+          Completá tu nombre y abrí WhatsApp con tu confirmación lista para
+          enviar.
+        </p>
+        <form id="rsvp-form">
+          <label class="form-field"
+            >Tu nombre<input
+              id="guest-name"
+              type="text"
+              placeholder="Ej: Sofi"
+              minlength="2"
+              maxlength="70"
+              required
+              autocomplete="given-name" /></label
+          ><label class="form-field"
+            >¿Participás en los juegos?<select id="plays">
+              <option value="Sí, obvio 🎲">Sí, obvio 🎲</option>
+              <option value="Prefiero mirar 🥂">Prefiero mirar 🥂</option>
+            </select></label
+          ><button class="button full" type="submit">
+            Abrir WhatsApp para confirmar
+          </button>
+        </form>
+        <p class="status" id="rsvp-status" aria-live="polite"></p>
+        <p class="muted">
+          Tu confirmación se completa cuando tocás <b>Enviar</b> en WhatsApp. No
+          se registra automáticamente en esta web.
+        </p>
+      </div>
+    </div>
+    <script type="module" src="./invite.js"></script>
+  </body>
+</html>

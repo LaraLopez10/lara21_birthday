@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#800f2d" />
+    <title>Mis equipos · Lara's 21 🍒</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a href="./" class="brand">🍒 Lara’s 21</a>
+        <nav class="mini-nav"><a href="./">Volver a invitación</a></nav>
+      </header>
+      <main>
+        <div class="top-intro">
+          <div style="font-size: 46px">🎀 🪩 🍒</div>
+          <h1>Meet your teams</h1>
+          <p>
+            ¡Estos son los equipos de nuestra Cherry Game Night! Prepará tu
+            grito de guerra y muchas ganas de ganar.
+          </p>
+        </div>
+        <div class="content">
+          <section class="paper">
+            <h2>Los equipos 🏆</h2>
+            <div id="teams">
+              <p class="notice">
+                Todavía no recibiste un enlace con los equipos. Lara los
+                compartirá antes de la fiesta.
+              </p>
+            </div>
+            <p id="message" class="status" aria-live="polite"></p>
+            <div class="actions">
+              <a href="./" class="button outline">Volver a la invitación</a
+              ><button class="button hidden" id="share">
+                Compartir equipos
+              </button>
+            </div>
+          </section>
+          <section class="paper center">
+            <h2>¡Nos vemos el sábado! 🥂</h2>
+            <p>21 de noviembre · 22:00 hs · San José 643</p>
+            <p class="muted">Dress code: ropa para santas.</p>
+          </section>
+        </div>
+      </main>
+      <footer class="footer">CHERRY VIBES ONLY ♥</footer>
+    </div>
+    <script type="module">
+      import { decodeTeams, renderTeams, teamPlainText } from "./shared.js";
+      if (location.hash.startsWith("#t=")) {
+        try {
+          const teams = decodeTeams(location.hash);
+          renderTeams(document.querySelector("#teams"), teams);
+          document.querySelector("#share").classList.remove("hidden");
+          document
+            .querySelector("#share")
+            .addEventListener("click", async () => {
+              const url = location.href;
+              if (navigator.share) {
+                try {
+                  await navigator.share({
+                    title: "Equipos Lara’s 21",
+                    text: teamPlainText(teams),
+                    url,
+                  });
+                  return;
+                } catch (e) {
+                  if (e.name === "AbortError") return;
+                }
+              }
+              try {
+                await navigator.clipboard.writeText(url);
+                document.querySelector("#message").textContent =
+                  "Enlace copiado. Compartilo por WhatsApp.";
+              } catch {
+                document.querySelector("#message").textContent =
+                  "Copiá la dirección de esta página para compartirla.";
+              }
+            });
+        } catch (e) {
+          document.querySelector("#teams").textContent =
+            "El enlace no contiene equipos válidos. Pedile a Lara el enlace actualizado.";
+        }
+      }
+    </script>
+  </body>
+</html>
