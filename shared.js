@@ -1,11 +1,11 @@
 export const TEAM_LABELS = [
   "🍒 Team Cherry",
   "🎀 Team Pink",
-  "🪩 Team Disco",
-  "🍸 Team Cocktail",
-  "👑 Team Iconic",
-  "💋 Team Glam",
-  "💖 Team Sweet",
+  "⭐ Team Celeste",
+  "💚 Team Lime",
+  "🌸 Team Rose",
+  "✨ Team Star",
+  "💜 Team Violet",
 ];
 export const KEY = "lara21-organizador-v1";
 export function emptyState() {
@@ -15,6 +15,9 @@ export function emptyState() {
     teamNames: [],
     publishedTeams: [],
     publishedAt: null,
+    participantsConfirmed: false,
+    teamsConfirmed: false,
+    teamCount: 4,
   };
 }
 export function readState() {
@@ -26,6 +29,9 @@ export function readState() {
         ...d,
         teamNames: Array.isArray(d.teamNames) ? d.teamNames : [],
         publishedTeams: Array.isArray(d.publishedTeams) ? d.publishedTeams : [],
+        participantsConfirmed: d.participantsConfirmed === true,
+        teamsConfirmed: d.teamsConfirmed === true,
+        teamCount: Number.isInteger(d.teamCount) ? d.teamCount : (d.teams.length || 4),
       };
   } catch {}
   return emptyState();
@@ -74,12 +80,13 @@ export function decodeTeams(hash) {
   if (
     data.version !== 1 ||
     !Array.isArray(data.teams) ||
-    data.teams.length > 12 ||
+    data.teams.length < 2 || data.teams.length > 6 ||
     data.teams.some(
       (t) =>
-        typeof t.name !== "string" ||
+        typeof t.name !== "string" || t.name.length > 40 ||
         !Array.isArray(t.members) ||
-        t.members.some((m) => typeof m !== "string" || m.length > 70),
+        t.members.length > 500 ||
+        t.members.some((m) => typeof m !== "string" || !m.trim() || m.length > 70),
     )
   )
     throw Error("Datos de equipos inválidos");

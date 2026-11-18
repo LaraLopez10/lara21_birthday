@@ -35,11 +35,15 @@
           contraseña ni protección real: no la compartas y no incluyas
           información sensible. Exportá una copia como respaldo.
         </div>
+        <nav class="organizer-tabs" aria-label="Secciones del organizador" role="tablist">
+          <button class="tab-button active" role="tab" aria-selected="true" data-panel="participants-panel">Participantes</button>
+          <button class="tab-button" role="tab" aria-selected="false" data-panel="teams-panel">Equipos</button>
+          <button class="tab-button" role="tab" aria-selected="false" data-panel="result-panel">Resultado</button>
+        </nav>
+        <div id="participants-panel" class="tab-panel">
         <section class="paper lucky-paper">
-          <div class="section-eyebrow">01 · Las jugadoras</div>
-          <h2>
-            Confirmadas <span class="count-pill" id="guest-count">0</span>
-          </h2>
+          <div class="section-eyebrow">01 · LAS JUGADORAS</div>
+          <div class="confirmed-heading"><h2>Confirmadas</h2><span class="count-pill" id="guest-count">0 jugadoras</span></div>
           <p class="muted">
             Agregá los nombres de quienes te confirmaron que participarán en los
             juegos. Tocá × para quitarlas.
@@ -56,7 +60,12 @@
           </form>
           <div class="tags" id="guests"></div>
           <p class="muted">Los nombres se guardan solo en este navegador.</p>
+          <p id="guest-confirmed-status" class="confirmation-status hidden" role="status">✓ Jugadoras confirmadas</p>
+          <div class="actions participant-actions"><button class="button" id="confirm-guests" type="button">Confirmar jugadoras</button><button class="button outline hidden" id="edit-guests" type="button">Editar jugadoras</button></div>
+          <p id="guest-feedback" class="status" aria-live="polite"></p>
         </section>
+        </div>
+        <div id="teams-panel" class="tab-panel hidden">
         <section class="paper lucky-machine">
           <div class="section-eyebrow">02 · La máquina de la suerte</div>
           <h2>¿Quién juega con quién?</h2>
@@ -64,6 +73,9 @@
             Se mezclan las invitadas al azar y se reparten en grupos con tamaños
             equilibrados.
           </p>
+          <div id="team-setup-lock" class="notice setup-prompt">Confirmá las jugadoras para configurar los equipos.</div>
+          <div id="team-setup" class="team-setup locked">
+          <p id="confirmed-guest-total" class="confirmed-total"></p>
           <label class="form-field"
             >Cantidad de equipos<select id="count">
               <option value="2">2 equipos</option>
@@ -74,10 +86,14 @@
             </select></label
           >
           <div id="team-name-fields" class="team-name-fields"></div>
-          <div class="slot-window" id="slot-window" aria-live="polite">
-            <span>🍒</span><b>¡Que empiece la suerte!</b><span>🎀</span>
+          <p id="team-size-estimate" class="muted team-estimate"></p>
+          <p id="team-confirmed-status" class="confirmation-status hidden" role="status">✓ ¡Equipos configurados! Ya podés realizar el sorteo.</p>
+          <div class="actions team-actions"><button class="button" id="confirm-teams" type="button">Confirmar equipos</button><button class="button outline hidden" id="edit-teams" type="button">Editar configuración</button></div>
           </div>
-          <button class="button full draw-button" id="draw">
+          <div class="envelope-stage" id="slot-window" aria-live="polite">
+            <div class="envelope"><span class="envelope-seal">🍒</span><span class="envelope-letter">Lista para formar los equipos</span></div>
+          </div>
+          <button class="button full draw-button" id="draw" disabled>
             🍒 Sortear equipos 🍒
           </button>
           <p class="status" id="draw-status" aria-live="polite"></p>
@@ -100,6 +116,12 @@
           </div>
           <p id="publish-info" class="muted"></p>
         </section>
+        </div>
+        <div id="result-panel" class="tab-panel hidden">
+          <section class="paper lucky-paper"><div class="section-eyebrow">03 · Revisión final</div><h2>Editar y publicar</h2><p class="muted">Podés mover participantes entre equipos antes de confirmar.</p><div id="editable-result"></div><button class="button full" id="save-manual">Guardar cambios</button><p id="manual-status" class="status" aria-live="polite"></p>
+            <div class="actions hidden" id="result-share-actions"><button class="button" id="result-copy-link">Copiar enlace público</button><button class="button outline" id="result-share-wa">Copiar para WhatsApp</button></div>
+          </section>
+        </div>
         <section class="paper lucky-paper">
           <h2>Guardá tu organización 💾</h2>
           <p class="muted">
