@@ -25,3 +25,6 @@ El organizador no tiene autenticación. `localStorage` es local al navegador y e
 - Dirección y mapa: `index.html`.
 - Equipos predeterminados y validación del enlace: `shared.js`.
 - Estilos: `style.css`.
+
+
+Invitacion para mis 21 años
